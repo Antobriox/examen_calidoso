@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block title %}Gestión de Evaluaciones{% endblock %}
+{% block content %}
+<div class="container">
+    <h1>Gestión de Evaluaciones</h1>
+    <form action="{{ url_for('gestion_evaluaciones') }}" method="POST">
+        <div class="form-group">
+            <label for="nombre">Nombre de la Evaluación:</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="fecha">Fecha de la Evaluación:</label>
+            <input type="date" id="fecha" name="fecha" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Añadir Evaluación</button>
+    </form>
+    <ul class="list-group mt-4">
+        {% for evaluacion in evaluaciones %}
+            <li class="list-group-item">{{ evaluacion.nombre }} - {{ evaluacion.fecha }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

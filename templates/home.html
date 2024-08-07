@@ -1,21 +1,15 @@
 {% extends 'layout.html' %}
 
+{% block title %}Dashboard{% endblock %}
+
 {% block content %}
-<div class="container mt-5">
-    <h1>Califica Artículos</h1>
-    <ul class="list-group">
-        {% for tema in temas %}
-        <li class="list-group-item">
-            <a href="{{ url_for('ver_tema', id_tema=tema.id) }}">{{ tema.titulo }}</a>
-            <br>
-            <small>Calificación Promedio: {{ tema.promedio_calificaciones|round(2) }}</small>
-        </li>
-        {% endfor %}
-    </ul>
-    
-    <!-- Botón para agregar nuevo tema -->
-    <div class="mt-4 text-center">
-        <a href="{{ url_for('agregar_tema') }}" class="btn btn-primary">Agregar Nuevo Artículo</a>
+<h1>Bienvenido al Dashboard</h1>
+{% for tema in temas %}
+    <div class="tema">
+        <h2>{{ tema.titulo }}</h2>
+        <p>{{ tema.descripcion }}</p>
+        <small>Calificación Promedio: {{ tema.promedio_calificaciones|round(2) }}</small>
+        <a href="{{ url_for('ver_tema', id_tema=tema.id) }}">Ver Tema</a>
     </div>
-</div>
+{% endfor %}
 {% endblock %}

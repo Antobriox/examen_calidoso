@@ -1,17 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Usuarios</title>
-</head>
-<body>
+{% extends 'layout.html' %}
+{% block title %}Lista de Usuarios{% endblock %}
+{% block content %}
+<div class="container">
     <h1>Lista de Usuarios</h1>
-    <ul>
+    <ul class="list-group">
         {% for usuario in usuarios %}
-            <li>{{ usuario.nombre_usuario }} - {{ usuario.email }}</li>
+            <li class="list-group-item">
+                {{ usuario.nombre_usuario }} - {{ usuario.email }}
+                <form action="{{ url_for('eliminar_usuario', id=usuario.id) }}" method="POST" style="display: inline;">
+                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                </form>
+                <a href="{{ url_for('editar_usuario', id=usuario.id) }}" class="btn btn-secondary btn-sm">Editar</a>
+            </li>
         {% endfor %}
     </ul>
-    <a href="{{ url_for('agregar_usuario') }}">Agregar Usuario</a>
-</body>
-</html>
+    <a href="{{ url_for('registro') }}" class="btn btn-primary mt-3">Agregar Usuario</a>
+</div>
+{% endblock %}

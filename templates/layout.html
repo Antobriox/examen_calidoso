@@ -3,39 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Evaluación</title>
+    <title>{% block title %}Foro en Línea{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="{{ url_for('home') }}">Sistema de Evaluación</a>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                {% if current_user.is_authenticated %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('home') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('login') }}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ url_for('registro') }}">Registro</a>
-                </li>
-                {% endif %}
-            </ul>
-        </div>
+    <nav class="nav-left">
+        <ul>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('home') }}">Dashboard</a></li>
+            <li><a href="{{ url_for('lista_usuarios') }}">Usuarios</a></li>
+            <li><a href="{{ url_for('gestion_asignaturas') }}">Asignaturas</a></li>
+            <li><a href="{{ url_for('gestion_evaluaciones') }}">Evaluaciones</a></li>
+            <li><a href="{{ url_for('gestion_calificaciones') }}">Calificaciones</a></li>
+            <li><a href="{{ url_for('gestion_asistencia') }}">Asistencia</a></li>
+            {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('logout') }}">Cerrar Sesión</a></li>
+            {% else %}
+                <li><a href="{{ url_for('login') }}">Iniciar Sesión</a></li>
+            {% endif %}
+        </ul>
     </nav>
     <div class="container">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
+                <ul class="flashes">
                 {% for category, message in messages %}
-                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                    <li class="{{ category }}">{{ message }}</li>
                 {% endfor %}
+                </ul>
             {% endif %}
         {% endwith %}
         {% block content %}{% endblock %}
