@@ -1,0 +1,28 @@
+body {
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+
+.list-group-item {
+    margin-bottom: 10px;
+}
+
+.btn {
+    margin-top: 15px;
+}
+
+.navbar {
+    margin-bottom: 30px;
+}
+
+.alert {
+    margin-bottom: 20px;
+}

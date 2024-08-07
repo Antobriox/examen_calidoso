@@ -1,0 +1,4 @@
+# railway.toml
+[build]
+# Lista de paquetes que deben estar disponibles en el entorno de construcción
+systemPackages = ["libpq-dev"]
